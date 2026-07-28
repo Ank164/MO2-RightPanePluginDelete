@@ -23,9 +23,9 @@ are deliberately blocked. Files owned by normal MO2 mods or `Overwrite` are
 moved to the Windows Recycle Bin, then MO2 refreshes its lists.
 
 If removing the selected plugin file(s) leaves a normal mod folder containing
-only `meta.ini`, the confirmation dialog lists that mod and the entire folder
-is also moved to the Recycle Bin. This cleanup never applies to `Overwrite` or
-the real game `Data` directory.
+only `meta.ini`, a separate **Yes / No** prompt asks whether the entire folder
+should also be moved to the Recycle Bin. **No** is the default. This cleanup
+never applies to `Overwrite` or the real game `Data` directory.
 
 ## Compatibility
 

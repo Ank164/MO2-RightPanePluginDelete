@@ -75,7 +75,7 @@ class RightPanePluginDelete(mobase.IPluginTool):
         )
 
     def version(self) -> mobase.VersionInfo:
-        return mobase.VersionInfo(1, 4, 0, mobase.ReleaseType.FINAL)
+        return mobase.VersionInfo(1, 5, 0, mobase.ReleaseType.FINAL)
 
     def settings(self) -> list[mobase.PluginSetting]:
         return []
@@ -382,17 +382,6 @@ class RightPanePluginDelete(mobase.IPluginTool):
                 "\n\nWarning: these installed plugins require the selected file(s):\n"
                 + "\n".join(f"• {name}" for name in dependents)
             )
-        folder_warning = ""
-        if cleanup_folders:
-            folder_warning = (
-                "\n\nThese mod folders will contain only meta.ini and will "
-                "also be moved to the Recycle Bin:\n"
-                + "\n".join(
-                    f"• {display_name}"
-                    for display_name in cleanup_folders.values()
-                )
-            )
-
         answer = QMessageBox.warning(
             self._parent_widget,
             "Move plugin file(s) to Recycle Bin?",
@@ -400,13 +389,29 @@ class RightPanePluginDelete(mobase.IPluginTool):
             "Windows Recycle Bin:\n\n"
             + "\n".join(lines)
             + warning
-            + folder_warning
             + "\n\nContinue?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel,
             QMessageBox.StandardButton.Cancel,
         )
         if answer != QMessageBox.StandardButton.Yes:
             return
+
+        if cleanup_folders:
+            remove_folders = QMessageBox.question(
+                self._parent_widget,
+                "Remove metadata-only mod folder(s)?",
+                "After the selected plugin file(s) are removed, these mod "
+                "folders will contain only meta.ini:\n\n"
+                + "\n".join(
+                    f"• {display_name}"
+                    for display_name in cleanup_folders.values()
+                )
+                + "\n\nMove these folders to the Recycle Bin too?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                QMessageBox.StandardButton.No,
+            )
+            if remove_folders != QMessageBox.StandardButton.Yes:
+                cleanup_folders = {}
 
         failures: list[str] = []
         moved: list[str] = []
