@@ -1,4 +1,4 @@
-# Right Pane Plugin Delete for MO2 2.5.2
+# Right Pane Plugin Delete for MO2 2.5.2 and 2.5.3
 
 Adds **Move plugin file(s) to Recycle Bin** to the context menu in MO2's
 right-hand **Plugins** tab.
@@ -29,7 +29,7 @@ never applies to `Overwrite` or the real game `Data` directory.
 
 ## Compatibility
 
-Built against the MO2 2.5.2 UI and Python API (Python 3.12 / PyQt 6).
+Supports MO2 2.5.2 and 2.5.3. Originally built against the MO2 2.5.2 UI and Python API (Python 3.12 / PyQt 6).
 
 The MO2 API does not currently provide a public context-menu extension point
 for the Plugins tab. This plugin supports both MO2's stock `espList` and
@@ -38,3 +38,8 @@ update may require a small compatibility update.
 
 Attachment and context-menu diagnostics are written to
 `MO2\logs\right-pane-plugin-delete.log`.
+
+## License
+
+Licensed under the GNU General Public License version 3 only (GPL-3.0-only).
+See [LICENSE](LICENSE) for the full license text.

@@ -1,4 +1,5 @@
-"""MO2 2.5.2 plugin: delete plugin files from the right-pane context menu."""
+# SPDX-License-Identifier: GPL-3.0-only
+"""MO2 2.5.2 / 2.5.3 plugin: delete plugin files from the right-pane context menu."""
 
 from __future__ import annotations
 
